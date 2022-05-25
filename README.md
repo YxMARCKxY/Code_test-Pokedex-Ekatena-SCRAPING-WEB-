@@ -5,6 +5,7 @@ Hacer un servicio/script del sitio https://www.pokemon.com/el/pokedex/ que extra
  - 'httparty'
  - 'nokogiri'
  - 'activerecord'
+ - 'postgresql'
  
 ### 💡 COMO CORRER EL SCRIPT
 Desde la terminal ubicandonos dentro del directorio donde esten todos los archivos del script

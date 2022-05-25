@@ -1,0 +1,29 @@
+require 'active_record'
+namespace :db do
+  db_config       = YAML::load(File.open('./database.yml'))
+  db_config_admin = db_config.merge({'database' => 'postgres', 'schema_search_path' => 'public'})
+    desc "Create the database"
+    task :create do
+    ActiveRecord::Base.establish_connection(db_config_admin)
+    ActiveRecord::Base.connection.create_database(db_config["database"])
+    puts "Database created."
+
+    require 'postgresql'
+    ActiveRecord::Base.establish_connection(db_config)
+    ActiveRecord::Schema.define() do
+      create_table "pokemons", force: :cascade do |t|
+        t.string "name", null: true
+        t.string "description", null: true
+        t.string "height", null: true
+        t.string "weight", null: true
+        t.string "gender", null: true
+        t.string "category", null: true
+        t.string "hability", null: true
+        t.string "kind", null: true
+        t.string "weakness" , null: true
+        t.string "base_points", null: true
+        t.string "evolutions", null: true
+      end
+    end
+  end
+end
